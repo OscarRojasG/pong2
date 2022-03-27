@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define DEGREES M_PI/180
 
@@ -125,7 +126,7 @@ void renderBricks(List *list, SDL_Renderer *renderer){
 
 
 void listInit(List *list, size_t typeSize){
-    list->p = malloc(5 * typeSize);
+    list->p = (SDL_Rect *) malloc(5 * typeSize);
     if(!list->p){
         printf("Error creating list\n");
         exit(1);
@@ -141,7 +142,7 @@ void listResize(List *list){
         printf("Error resizing list\n");
         exit(1);
     }
-    list->p = tmp;
+    list->p = (SDL_Rect *) tmp;
     list->free += (int)list->length/2;
 }
 
@@ -238,7 +239,7 @@ void updateTime() {
 	last_frame = current_frame;
 }
 
-int main()
+int main(int argc, char** argv)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		fprintf(stderr, 

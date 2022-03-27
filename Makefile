@@ -1,7 +1,5 @@
 NAME=pong
-all: $(NAME)
-
-$(NAME): main.c
-	gcc main.c -o $(NAME) -lSDL2 -lm -g
+all:
+	g++ -Isrc/include -Lsrc/lib -o main main.c -lmingw32 -lSDL2main -lSDL2
 
 
